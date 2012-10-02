@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="ActivityToPeopleUpdaterPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvEdicionR</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvCurCdur</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabaDir</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvArtPub</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvCapLib</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvDistinc</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvPresentac</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvConsult</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvExpDoc</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvDocTrab</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvLibro</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvOrgEven</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.StdHrAcadBackgr</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabTecn</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvActInves</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabTec</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvDlloMat</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.StdHrPrevJobs</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabDir</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvPrefEpil</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvProdTec</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurCom</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4scoAssocMe</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvEmpBtec</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvConsDet</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.StdHrLangTrans</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4scoHrCompBack</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvNormaN</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvSoftReg</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.StdPerson</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvActInves_1</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvConsult_1</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvCurCdur_1</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbHrCc</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvDistinci</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.220.120:1521:ddelfi"/>
+      <property name="javax.persistence.jdbc.password" value="Passw0rd"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.user" value="ddelfi"/>
+    </properties>
+  </persistence-unit>
+</persistence>
