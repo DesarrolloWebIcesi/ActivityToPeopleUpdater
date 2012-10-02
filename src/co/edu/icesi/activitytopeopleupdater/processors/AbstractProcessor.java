@@ -32,33 +32,37 @@ public abstract class AbstractProcessor {
     }
 
     protected abstract void runProcesor();
-    
+
     public void run() {
         abstracLogger.info("Starting " + this.entitie + " processor for user " + professor.getUsername());
         int entitiesLength = 0;
         int trynumbers = 1;
         do {
+            boolean error = false;
             try {
                 entitiesLength = this.entities.getLength();
-                
+            } catch (NullPointerException ex) {
+                error=true;
+                abstracLogger.error("Error getting the number of " + this.entitie + " records", ex);
+                trynumbers++;
+                if (trynumbers < 4) {
+                    abstracLogger.info("Starting " + this.entitie + " processor for user " + professor.getUsername() + " try " + trynumbers);
+                } else {
+                    abstracLogger.info(this.entitie + " processor for user " + professor.getUsername() + " ignored");
+                }
+
+            }
+            if (!error) {
                 if (this.entities != null && entitiesLength > 0) {
                     abstracLogger.info(this.entities.getLength() + " " + this.entitie + " entities found for user " + professor.getUsername());
                     runProcesor();
-                    trynumbers=5;
-                } else {                    
+                    trynumbers = 5;
+                } else {
                     abstracLogger.info("There is not " + this.entitie + " Entities for " + this.professor.getUsername() + " in ActivityInsight system");
-                    trynumbers=5;
+                    trynumbers = 5;
                 }
-            } catch (NullPointerException ex) {
-                abstracLogger.error("Error getting the number of " + this.entitie + " records", ex);
-                trynumbers++;
-                if(trynumbers<4){
-                    abstracLogger.info("Starting " + this.entitie + " processor for user " + professor.getUsername()+" try "+trynumbers);
-                }else{
-                    abstracLogger.info(this.entitie + " processor for user " + professor.getUsername()+" ignored");
-                }
-                
             }
+
         } while (trynumbers < 4);
 
         abstracLogger.info(this.entitie + " processor for user " + professor.getUsername() + " finished");

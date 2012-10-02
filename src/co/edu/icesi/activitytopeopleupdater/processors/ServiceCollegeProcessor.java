@@ -153,7 +153,7 @@ public class ServiceCollegeProcessor extends AbstractProcessor{
 
         String isServedEx = DocumentProcessor.getTagValue("EXOFFICIO", multipleNode);
         if (isServedEx != null && !isServedEx.equalsIgnoreCase("")) {
-            if (isElected.equalsIgnoreCase("Yes")) {
+            if (isServedEx.equalsIgnoreCase("Yes")) {
                 association.setCcbInherCarg("1");
             } else {
                 association.setCcbInherCarg("0");
