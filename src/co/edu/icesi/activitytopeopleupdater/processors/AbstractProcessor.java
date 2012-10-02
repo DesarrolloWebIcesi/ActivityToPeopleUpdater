@@ -13,7 +13,7 @@ import org.w3c.dom.NodeList;
  *
  * @author David Andrés Manzano Herrera
  */
-public abstract class AbstractProcessor extends Thread {
+public abstract class AbstractProcessor {
 
     protected static Logger abstracLogger = Logger.getLogger(AbstractProcessor.class);
     protected Professor professor;
@@ -32,10 +32,8 @@ public abstract class AbstractProcessor extends Thread {
     }
 
     protected abstract void runProcesor();
-
-    @Override
+    
     public void run() {
-        super.run();
         abstracLogger.info("Starting " + this.entitie + " processor for user " + professor.getUsername());
         int entitiesLength = 0;
         int trynumbers = 1;

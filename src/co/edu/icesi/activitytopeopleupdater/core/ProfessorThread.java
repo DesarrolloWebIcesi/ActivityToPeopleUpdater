@@ -33,123 +33,102 @@ public class ProfessorThread extends Thread {
 
         //Runs Congrant Processor
         CongrantProcessor congrantProcessor = new CongrantProcessor(professor, "CONGRANT");
-        congrantProcessor.start();
+        congrantProcessor.run();
         processors.add(congrantProcessor);
 
         //Runs DSL Processor
         DSLProcessor dslProcessor = new DSLProcessor(professor, "DSL");
-        dslProcessor.start();
+        dslProcessor.run();
         processors.add(dslProcessor);
 
         //Runs Adwarhonor Processor
         AwardhonorProcessor awarhonorProcessor = new AwardhonorProcessor(professor, "AWARDHONOR");
-        awarhonorProcessor.start();
+        awarhonorProcessor.run();
         processors.add(awarhonorProcessor);
 
         //Runs Present Processor
         PresentProcessor presentProcessor = new PresentProcessor(professor, "PRESENT");
-        presentProcessor.start();
+        presentProcessor.run();
         processors.add(presentProcessor);
 
         //Runs NCTEACH Processor
         NCTeachProcesor ncteachProcessor = new NCTeachProcesor(professor, "NCTEACH");
-        ncteachProcessor.start();
+        ncteachProcessor.run();
         processors.add(ncteachProcessor);
 
         //Runs EDUCATION Processor
         EducationProcessor educationProcessor = new EducationProcessor(professor, "EDUCATION");
-        educationProcessor.start();
+        educationProcessor.run();
         processors.add(educationProcessor);
 
         //Runs FACDEV Processor
         FacdevProcessor facdevProcessor = new FacdevProcessor(professor, "FACDEV");
-        facdevProcessor.start();
+        facdevProcessor.run();
         processors.add(facdevProcessor);
 
         //Runs INTELLCON Processor
         IntellcontProcessor intellcontProcessor = new IntellcontProcessor(professor, "INTELLCONT");
-        intellcontProcessor.start();
+        intellcontProcessor.run();
         processors.add(intellcontProcessor);
 
         //Runs CONSULT Processor
         ConsultProcessor consultProcessor = new ConsultProcessor(professor, "CONSULT");
-        consultProcessor.start();
+        consultProcessor.run();
         processors.add(consultProcessor);
 
         //Runs PASTHIST Processor
         PasthistProcessor pasthistProcessor = new PasthistProcessor(professor, "PASTHIST");
-        pasthistProcessor.start();
+        pasthistProcessor.run();
         processors.add(pasthistProcessor);
-        
-        associationProcessors();
 
-        for (int i = 0; i < processors.size(); i++) {
-            try {
-                processors.get(i).join();
-            } catch (InterruptedException ex) {
-                logger.error("Join for" + processors.get(i).getName() + " interrupted", ex);
-            }
-        }
+        associationProcessors();
 
         logger.info("Processors' bundle for user " + this.professor.getUsername() + " finished");
     }
 
     private void associationProcessors() {
         AbstractProcessor runningProcessor = null;
-        try {
-            //Runs MEMBER Processor
-            MemberProcesor memberProcesor = new MemberProcesor(professor, "MEMBER");
-            memberProcesor.start();
-            processors.add(memberProcesor);
-            runningProcessor=memberProcesor;
-            runningProcessor.join();
 
-            //Runs SERVICE_DEPARTMENT Processor
-            ServiceDepartmentProcessor serviceDepartmentProcessor = new ServiceDepartmentProcessor(professor, "SERVICE_DEPARTMENT");
-            serviceDepartmentProcessor.start();
-            processors.add(serviceDepartmentProcessor);
-            runningProcessor=serviceDepartmentProcessor;
-            runningProcessor.join();
+        //Runs MEMBER Processor
+        MemberProcesor memberProcesor = new MemberProcesor(professor, "MEMBER");
+        memberProcesor.run();
+        processors.add(memberProcesor);
+        runningProcessor = memberProcesor;
 
-            //Runs SERVICE_COLLEGE Processor
-            ServiceCollegeProcessor serviceCollegeProcessor = new ServiceCollegeProcessor(professor, "SERVICE_COLLEGE");
-            serviceCollegeProcessor.start();
-            processors.add(serviceCollegeProcessor);
-            runningProcessor=serviceCollegeProcessor;
-            runningProcessor.join();
+        //Runs SERVICE_DEPARTMENT Processor
+        ServiceDepartmentProcessor serviceDepartmentProcessor = new ServiceDepartmentProcessor(professor, "SERVICE_DEPARTMENT");
+        serviceDepartmentProcessor.run();
+        processors.add(serviceDepartmentProcessor);
+        runningProcessor = serviceDepartmentProcessor;
 
-            //Runs SERVICE_UNIVERSITY Processor
-            ServiceUniversityProcessor serviceUniversityProcessor = new ServiceUniversityProcessor(professor, "SERVICE_UNIVERSITY");
-            serviceUniversityProcessor.start();
-            processors.add(serviceUniversityProcessor);
-            runningProcessor=serviceUniversityProcessor;
-            runningProcessor.join();
+        //Runs SERVICE_COLLEGE Processor
+        ServiceCollegeProcessor serviceCollegeProcessor = new ServiceCollegeProcessor(professor, "SERVICE_COLLEGE");
+        serviceCollegeProcessor.run();
+        processors.add(serviceCollegeProcessor);
+        runningProcessor = serviceCollegeProcessor;
 
-            //Runs SERVICE_PUBLIC Processor
-            ServicePublicProcessor servicePublicProcessor = new ServicePublicProcessor(professor, "SERVICE_PUBLIC");
-            servicePublicProcessor.start();
-            processors.add(servicePublicProcessor);
-            runningProcessor=servicePublicProcessor;
-            runningProcessor.join();
+        //Runs SERVICE_UNIVERSITY Processor
+        ServiceUniversityProcessor serviceUniversityProcessor = new ServiceUniversityProcessor(professor, "SERVICE_UNIVERSITY");
+        serviceUniversityProcessor.run();
+        processors.add(serviceUniversityProcessor);
+        runningProcessor = serviceUniversityProcessor;
 
-            //Runs SERVICE_PROFESSIONAL Processor
-            ServiceProfessionalProcessor serviceProfessionalProcessor = new ServiceProfessionalProcessor(professor, "SERVICE_PROFESSIONAL");
-            serviceProfessionalProcessor.start();
-            processors.add(serviceProfessionalProcessor);
-            runningProcessor=serviceProfessionalProcessor;
-            runningProcessor.join();
+        //Runs SERVICE_PUBLIC Processor
+        ServicePublicProcessor servicePublicProcessor = new ServicePublicProcessor(professor, "SERVICE_PUBLIC");
+        servicePublicProcessor.run();
+        processors.add(servicePublicProcessor);
+        runningProcessor = servicePublicProcessor;
 
-            //Runs EXTERNAL_PARTNERSHIPS Processor
-            ExternalPartnershipsProcessor externalPartnershipsProcessor = new ExternalPartnershipsProcessor(professor, "EXTERNAL_PARTNERSHIPS");
-            externalPartnershipsProcessor.start();
-            processors.add(externalPartnershipsProcessor);
-            runningProcessor=externalPartnershipsProcessor;
-            runningProcessor.join();
+        //Runs SERVICE_PROFESSIONAL Processor
+        ServiceProfessionalProcessor serviceProfessionalProcessor = new ServiceProfessionalProcessor(professor, "SERVICE_PROFESSIONAL");
+        serviceProfessionalProcessor.run();
+        processors.add(serviceProfessionalProcessor);
+        runningProcessor = serviceProfessionalProcessor;
 
-        } catch (InterruptedException ex) {
-
-            logger.error("Join for" + runningProcessor.getName() + " interrupted", ex);
-        }
-
+        //Runs EXTERNAL_PARTNERSHIPS Processor
+        ExternalPartnershipsProcessor externalPartnershipsProcessor = new ExternalPartnershipsProcessor(professor, "EXTERNAL_PARTNERSHIPS");
+        externalPartnershipsProcessor.run();
+        processors.add(externalPartnershipsProcessor);
+        runningProcessor = externalPartnershipsProcessor;
     }
 }
