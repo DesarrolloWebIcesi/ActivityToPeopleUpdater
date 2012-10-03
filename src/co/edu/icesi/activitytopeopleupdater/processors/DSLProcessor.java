@@ -294,6 +294,8 @@ public class DSLProcessor extends AbstractProcessor {
                 }
                 if (studentProgram != null) {
                     studentsProgramString += studentProgram;
+                }else{
+                    studentsProgramString += "-";
                 }
             }
         }
