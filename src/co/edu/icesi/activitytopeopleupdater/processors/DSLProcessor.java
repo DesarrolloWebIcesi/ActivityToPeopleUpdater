@@ -47,10 +47,17 @@ public class DSLProcessor extends AbstractProcessor {
     private final String UNDERGRADUATE_FINAL_PROJECT_TYPE = "IV_11";
     private final String OTHER_TYPE = "IV_99";
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public DSLProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
 
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
         M4ccbCvJurComJpaController dslController = new M4ccbCvJurComJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
@@ -102,7 +109,7 @@ public class DSLProcessor extends AbstractProcessor {
             }
         }
     }
-
+    
     private M4ccbCvJurCom processDSL(M4ccbCvJurCom dsl, Element dslNode) {
         String dslComment = DocumentProcessor.getTagValue("COMMENT", dslNode);
         if (dslComment != null) {

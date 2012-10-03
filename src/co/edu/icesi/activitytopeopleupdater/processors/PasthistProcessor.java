@@ -32,10 +32,17 @@ public class PasthistProcessor extends AbstractProcessor {
 
     private static Logger logger = Logger.getLogger(PasthistProcessor.class);
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public PasthistProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
 
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
 

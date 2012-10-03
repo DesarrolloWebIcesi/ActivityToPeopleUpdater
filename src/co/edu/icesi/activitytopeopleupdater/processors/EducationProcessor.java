@@ -38,10 +38,17 @@ public class EducationProcessor extends AbstractProcessor {
     private final String DOCTOR_EDUCATION_DEGREE="EDD";
     private final String OTHER_DEGREE="000";
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public EducationProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
 
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
         StdHrAcadBackgrJpaController academicBgsController = new StdHrAcadBackgrJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
@@ -93,6 +100,14 @@ public class EducationProcessor extends AbstractProcessor {
         }
     }
 
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param academicBg A M4ccbCvActInves Object in which the information will be saved
+     * @param congrantNode The entity node that will be processed
+     * 
+     * @return A filled M4ccbCvActInves Object
+     */
     private StdHrAcadBackgr processAcademicBg(StdHrAcadBackgr academicBg, Element educationNode) {
         String isHighest = DocumentProcessor.getTagValue("HIGHEST", educationNode);
         if (isHighest != null && isHighest.equalsIgnoreCase("yes")) {
@@ -103,7 +118,9 @@ public class EducationProcessor extends AbstractProcessor {
         
         String academicBgArea=DocumentProcessor.getTagValue("SUPPAREA", educationNode);
         if(academicBgArea!=null && !academicBgArea.equalsIgnoreCase("")){
-            academicBg.setCcbOtroTitul(academicBgArea);
+            //FIXED
+            //academicBg.setCcbOtroTitul(academicBgArea);
+            academicBg.setCcbOtroEspec(academicBgArea);
         }
         
         String academicBgTitulation=DocumentProcessor.getTagValue("DEGOTHER", educationNode);

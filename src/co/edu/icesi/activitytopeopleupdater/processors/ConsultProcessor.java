@@ -39,10 +39,17 @@ public class ConsultProcessor extends AbstractProcessor {
     private String pDesc;
     private String pComp;
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public ConsultProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
 
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
 

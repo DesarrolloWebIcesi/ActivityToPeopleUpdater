@@ -35,10 +35,17 @@ public class ServiceUniversityProcessor extends AbstractProcessor{
     private final String COLLEGE_SCOPE = "SC_07";
     private final String DEPARTMENT_SCOPE = "SC_08";
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public ServiceUniversityProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
     
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
         M4scoAssocMeJpaController associationsController = new M4scoAssocMeJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));

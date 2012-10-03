@@ -44,10 +44,17 @@ public class CongrantProcessor extends AbstractProcessor {
     private final String PRIVATE_AWARDORG = "AO_05";
     private final String OTHER_AWARDORG = "AO_99";
 
+   /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public CongrantProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
-
+    
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
         M4ccbCvActInvesJpaController investActivitiesController = new M4ccbCvActInvesJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
@@ -99,6 +106,14 @@ public class CongrantProcessor extends AbstractProcessor {
         }
     }
 
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param activity A M4ccbCvActInves Object in which the information will be saved
+     * @param congrantNode The entity node that will be processed
+     * 
+     * @return A filled M4ccbCvActInves Object
+     */
     private M4ccbCvActInves processActivity(M4ccbCvActInves activity, Element congrantNode) {
         String dtdEnd = DocumentProcessor.getTagValue("DTD_END", congrantNode);
         String dtmEnd = DocumentProcessor.getTagValue("DTM_END", congrantNode);

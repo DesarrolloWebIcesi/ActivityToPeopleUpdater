@@ -29,6 +29,12 @@ public class IntellcontProcessor extends AbstractProcessor {
     private static Logger logger = Logger.getLogger(IntellcontProcessor.class);
     private String pContype;
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public IntellcontProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
@@ -2077,7 +2083,7 @@ public class IntellcontProcessor extends AbstractProcessor {
             case "Translation or Transcription":
                 pCodSalida = "CO_32";
                 break;
-            case "Trabajo Working Paper":
+            case "Working Paper":
                 pCodSalida = "CO_33";
                 break;
             case "Written Case with Instructional Material":

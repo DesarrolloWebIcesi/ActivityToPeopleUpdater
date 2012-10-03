@@ -22,6 +22,12 @@ public abstract class AbstractProcessor {
     protected String entitie;
     protected final String ORGANIZATION_CODE = "0000";
 
+    /** 
+     * AbstractProcessor Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public AbstractProcessor(Professor professor, String entitie) {
         this.professor = professor;
         this.xmlDocument = this.professor.getSchemaDocument();
@@ -30,9 +36,11 @@ public abstract class AbstractProcessor {
             this.entities = getEntities();
         }
     }
-
+    
+    /** Actually do the task of the processor */
     protected abstract void runProcesor();
 
+    /** Validates atributes and call runProcesor() method*/
     public void run() {
         abstracLogger.info("Starting " + this.entitie + " processor for user " + professor.getUsername());
         int entitiesLength = 0;
@@ -68,6 +76,7 @@ public abstract class AbstractProcessor {
         abstracLogger.info(this.entitie + " processor for user " + professor.getUsername() + " finished");
     }
 
+    /** Get the list of node that match the processor's entity class */
     private NodeList getEntities() {
         return this.xmlDocument.getElementsByTagName(this.entitie);
     }

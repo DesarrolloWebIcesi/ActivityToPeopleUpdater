@@ -43,10 +43,17 @@ public class AwardhonorProcessor extends AbstractProcessor {
     private final String COLLEGE_SCOPE_LOCALE = "SP_07";
     private final String DEPARTMENT_SCOPE_LOCALE = "SP_08";
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public AwardhonorProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
-
+    
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
 
@@ -99,6 +106,14 @@ public class AwardhonorProcessor extends AbstractProcessor {
         }
     }
 
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param distinction A M4ccbCvDistinc Object in which the information will be saved
+     * @param awardNode The entity node that will be processed
+     * 
+     * @return A filled M4ccbCvDistinc Object
+     */
     private M4ccbCvDistinc processDistinction(M4ccbCvDistinc distinction, Element awardNode) {
         
         String distinctionDescription = DocumentProcessor.getTagValue("DESC", awardNode);
@@ -153,6 +168,12 @@ public class AwardhonorProcessor extends AbstractProcessor {
         //throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    /** 
+     * Get the code in PeopleNet system of an award scope tag
+     * 
+     * @param awardScope An string for which the code will be looked
+     * @return The PeopleNet system code for the awardScope param
+     */
     private String getAwardScopeCode(String awardScope) {
         String scopeCode = this.OTHER_SCOPE;
         switch (awardScope) {
@@ -180,6 +201,12 @@ public class AwardhonorProcessor extends AbstractProcessor {
         return scopeCode;
     }
 
+    /** 
+     * Get the code in PeopleNet system of an award scope tag
+     * 
+     * @param awardScopelocale An string for which the code will be looked
+     * @return The PeopleNet system code for the awardScopelocale param
+     */
     private String getAwardScopelocaleCode(String awardScopelocale) {
         String scopelocaleCode = null;
         switch (awardScopelocale) {

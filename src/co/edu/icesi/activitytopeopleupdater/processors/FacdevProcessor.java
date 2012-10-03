@@ -38,10 +38,17 @@ public class FacdevProcessor extends AbstractProcessor {
     private final String WORKSHOP_TYPE = "AT_01";
     private final String OTHER_TYPE = "AT_99";
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public FacdevProcessor(Professor professor, String entitie) {
         super(professor, entitie);
     }
 
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
         M4scoHrCompBackJpaController backgroundController = new M4scoHrCompBackJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));

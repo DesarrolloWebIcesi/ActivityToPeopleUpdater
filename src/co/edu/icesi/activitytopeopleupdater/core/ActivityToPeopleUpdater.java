@@ -65,18 +65,4 @@ public class ActivityToPeopleUpdater {
 
         logger.info("ActitvityToPeopleUpdater finished");
     }
-
-    /**
-     *
-     */
-    public static void firstLoad() {
-        //TODO  Implementation for the data first load from. 
-    }
-
-    /**
-     *
-     */
-    public static void dailyLoad() {
-        //TODO Implementationfor de data daily update.
-    }
 }

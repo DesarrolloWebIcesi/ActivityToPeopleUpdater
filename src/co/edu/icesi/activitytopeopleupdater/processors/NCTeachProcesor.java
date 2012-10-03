@@ -40,10 +40,17 @@ public class NCTeachProcesor extends AbstractProcessor{
     private final String WORKSHOP_TYPE="IT_08";
     private final String OTHER_TYPE="IT_99";
 
+    /** 
+     * Constructor
+     * 
+     * @param professor The professor for who the processor will be run.
+     * @param entitie The class of entity the processor will run.
+     */
     public NCTeachProcesor(Professor professor, String entitie) {
         super(professor, entitie);
     }
     
+    /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
         M4ccbCvCurCdurJpaController coursesController = new M4ccbCvCurCdurJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));

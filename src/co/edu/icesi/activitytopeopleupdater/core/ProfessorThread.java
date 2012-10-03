@@ -21,11 +21,19 @@ public class ProfessorThread extends Thread {
     private List<AbstractProcessor> processors;
     private static final Logger logger = Logger.getLogger(ProfessorThread.class);
 
+    /** 
+     * Constructor for a ProfessorThread Object
+     * 
+     * @param professor The professor who the thread will be run.
+     */
     public ProfessorThread(Professor professor) {
         this.professor = professor;
         this.processors = new ArrayList<>();
     }
-
+    
+    /** 
+     * Runs the bundle of processor for the professor of this thread
+     */
     @Override
     public void run() {
         super.run();
@@ -86,6 +94,9 @@ public class ProfessorThread extends Thread {
         logger.info("Processors' bundle for user " + this.professor.getUsername() + " finished");
     }
 
+    /** 
+     * Runs the processor associated with the Associations table in PeopleNet system
+     */
     private void associationProcessors() {
         AbstractProcessor runningProcessor = null;
 
