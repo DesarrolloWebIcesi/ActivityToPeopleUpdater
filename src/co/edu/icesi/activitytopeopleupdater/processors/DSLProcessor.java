@@ -110,6 +110,14 @@ public class DSLProcessor extends AbstractProcessor {
         }
     }
     
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param dsl A M4ccbCvJurCom Object in which the information will be saved
+     * @param dslNode The entity node that will be processed
+     * 
+     * @return A filled M4ccbCvJurCom Object
+     */
     private M4ccbCvJurCom processDSL(M4ccbCvJurCom dsl, Element dslNode) {
         String dslComment = DocumentProcessor.getTagValue("COMMENT", dslNode);
         if (dslComment != null) {
@@ -199,6 +207,12 @@ public class DSLProcessor extends AbstractProcessor {
         return dsl;
     }
 
+    /** 
+     * Get the code in PeopleNet system of a dsl COMPSTAGE tag
+     * 
+     * @param dslCompstage An string for which the code will be looked
+     * @return The PeopleNet system code for the dslCompstage param
+     */
     private String getDslCompstageCode(String dslCompstage) {
         String compsatageCode = this.OTHER_COMPSTAGE;
         switch (dslCompstage) {
@@ -220,6 +234,12 @@ public class DSLProcessor extends AbstractProcessor {
         return compsatageCode;
     }
 
+    /** 
+     * Get the students' names of a dsl tag separeted by /
+     * 
+     * @param dslNode the dsl tag node to process
+     * @return A string of concatened students' names of the dsl node passed as param.
+     */
     private String getDslStudents(Element dslNode) {
         NodeList studentsList = dslNode.getElementsByTagName("DSL_STUDENT");
         String studentsString = "";
@@ -245,6 +265,12 @@ public class DSLProcessor extends AbstractProcessor {
         return studentsString;
     }
 
+    /** 
+     * Get the code in PeopleNet system of a dsl TYPE tag
+     * 
+     * @param dslType An string for which the code will be looked
+     * @return The PeopleNet system code for the dslType param
+     */
     private String getDslTypeCode(String dslType) {
         String dslTypeCode = this.OTHER_TYPE;
         switch (dslType) {
@@ -287,6 +313,12 @@ public class DSLProcessor extends AbstractProcessor {
         return dslTypeCode;
     }
 
+    /** 
+     * Get the students' programs of a dsl tag separeted by /
+     * 
+     * @param dslNode the dsl tag node to process
+     * @return A string of concatened students' programs of the dsl node passed as param.
+     */
     private String getDslStudentsPrograms(Element dslNode) {
         NodeList studentsList = dslNode.getElementsByTagName("DSL_STUDENT");
         String studentsProgramString = "";

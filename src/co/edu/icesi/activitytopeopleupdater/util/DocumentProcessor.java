@@ -14,7 +14,15 @@ import org.w3c.dom.NodeList;
  * @author David Andrés Manzano Herrera
  */
 public class DocumentProcessor {
-    /** Get the text value of a tag in a Element node*/
+    /** 
+     * Get the text value of a tag in a Element node
+     * 
+     * @param sTag The searched tag
+     * @param eElement The element in which search
+     * 
+     * @return  The node value of the searched tag,
+     *          <code>null</code> if the searched tag does not exist or has en empty value.
+     */
     public static String getTagValue(String sTag, Element eElement) {
 	NodeList nlList = eElement.getElementsByTagName(sTag);
         if(nlList!=null && nlList.getLength() > 0)

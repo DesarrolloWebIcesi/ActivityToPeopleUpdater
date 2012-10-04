@@ -19,7 +19,8 @@ import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
 
 /**
- *
+ * Execute the import process for the EDUCATION entities
+ * 
  * @author David Andrés Manzano Herrera - damanzano
  */
 public class EducationProcessor extends AbstractProcessor {
@@ -103,10 +104,10 @@ public class EducationProcessor extends AbstractProcessor {
     /** 
      * Process an entity's information and saves it in PeopleNet database objects 
      * 
-     * @param academicBg A M4ccbCvActInves Object in which the information will be saved
-     * @param congrantNode The entity node that will be processed
+     * @param academicBg A StdHrAcadBackgr Object in which the information will be saved
+     * @param educationNode The entity node that will be processed
      * 
-     * @return A filled M4ccbCvActInves Object
+     * @return A filled StdHrAcadBackgr Object
      */
     private StdHrAcadBackgr processAcademicBg(StdHrAcadBackgr academicBg, Element educationNode) {
         String isHighest = DocumentProcessor.getTagValue("HIGHEST", educationNode);
@@ -188,6 +189,9 @@ public class EducationProcessor extends AbstractProcessor {
     /** 
      * Special case for the Ph D degree level that must be saved as Ph.D in place of Ph D.
      * The other degree values are stored as they come from the webservice.
+     * 
+     * @param educationDegree An string for which the code will be looked
+     * @return The PeopleNet system code for the educationDegree param
      */
     private String getEducationDegreeCode(String educationDegree) {
         if(educationDegree.equalsIgnoreCase("Ph D")){

@@ -97,6 +97,14 @@ public class ServiceCollegeProcessor extends AbstractProcessor{
         }
     }
 
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param association A M4scoAssocMe Object in which the information will be saved
+     * @param multipleNode The entity node that will be processed
+     * 
+     * @return A filled M4scoAssocMe Object
+     */
     private M4scoAssocMe processAssociation(M4scoAssocMe association, Element multipleNode) {
 
         
@@ -243,6 +251,12 @@ public class ServiceCollegeProcessor extends AbstractProcessor{
         return association;
     }
     
+    /** 
+     * Get the code in PeopleNet system of a SCOPE tag of different entities that fill the PeopleNet's Associactions table
+     * 
+     * @param scope An string for which the code will be looked
+     * @return The PeopleNet system code for the scope param
+     */
     private String getAssociationScopeCode(String scope) {
          String scopeCode="";
         switch(scope){

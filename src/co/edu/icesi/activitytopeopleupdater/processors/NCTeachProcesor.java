@@ -102,6 +102,14 @@ public class NCTeachProcesor extends AbstractProcessor{
         }
     }
 
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param course A M4ccbCvCurCdur Object in which the information will be saved
+     * @param ncteachNode The entity node that will be processed
+     * 
+     * @return A filled M4ccbCvCurCdur Object
+     */
     private M4ccbCvCurCdur processCourse(M4ccbCvCurCdur course, Element ncteachNode) {
         String courseDescription=DocumentProcessor.getTagValue("DESC", ncteachNode);
         if(courseDescription!=null && !courseDescription.equalsIgnoreCase("")){
@@ -175,6 +183,12 @@ public class NCTeachProcesor extends AbstractProcessor{
         return course;
     }
     
+    /** 
+     * Get the code in PeopleNet system of a ncteach AUDIENCE tag
+     * 
+     * @param ncteachAudience An string for which the code will be looked
+     * @return The PeopleNet system code for the ncteachAudience param
+     */
     private String getNCTeachAudienceCode(String ncteachAudience){
         String ncteachAudienceCode=this.BOTH_AUDIENCE;
         switch(ncteachAudience){
@@ -191,6 +205,12 @@ public class NCTeachProcesor extends AbstractProcessor{
         return ncteachAudienceCode;
     }
 
+    /** 
+     * Get the code in PeopleNet system of a ncteach TYPE tag
+     * 
+     * @param ncteachType An string for which the code will be looked
+     * @return The PeopleNet system code for the ncteachType param
+     */
     private String getNCTeachTypeCode(String ncteachType) {
         String ncteachTypeCode=this.OTHER_TYPE;
         switch(ncteachType){

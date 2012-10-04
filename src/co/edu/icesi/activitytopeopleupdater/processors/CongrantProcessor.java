@@ -224,6 +224,12 @@ public class CongrantProcessor extends AbstractProcessor {
         return activity;
     }
 
+    /** 
+     * Get the code in PeopleNet system of a congrant TYPE tag
+     * 
+     * @param activityType An string for which the code will be looked
+     * @return The PeopleNet system code for the activityType param
+     */
     private String getCongrantTypeCode(String activityType) {
         String typeCode = this.OTHER_TYPE;
         switch (activityType) {
@@ -243,6 +249,12 @@ public class CongrantProcessor extends AbstractProcessor {
         return typeCode;
     }
 
+    /** 
+     * Get the code in PeopleNet system of a congrant STATUS tag
+     * 
+     * @param activityStatus An string for which the code will be looked
+     * @return The PeopleNet system code for the activityStatus param
+     */
     private String getCongrantStatusCode(String activityStatus) {
         String statusCode = this.OTHER_STATUS;
         switch (activityStatus) {
@@ -259,6 +271,12 @@ public class CongrantProcessor extends AbstractProcessor {
         return statusCode;
     }
 
+    /** 
+     * Get the code in PeopleNet system of a congrant AWARDORG tag
+     * 
+     * @param activityAwardorg An string for which the code will be looked
+     * @return The PeopleNet system code for the activityAwardorg param
+     */
     private String getCongrantAwardorgCode(String activityAwardorg) {
         String awardorgCode = this.OTHER_AWARDORG;
         switch (activityAwardorg) {
@@ -281,6 +299,12 @@ public class CongrantProcessor extends AbstractProcessor {
         return awardorgCode;
     }
 
+    /** 
+     * Get the investigators' names of a congrant tag separeted by /
+     * 
+     * @param congrantNode the congrant tag node to process
+     * @return A string of concatened investigators' names of the congrant node passed as param.
+     */
     private String getCongrantOtherInvests(Element congrantNode) {
         NodeList investList = congrantNode.getElementsByTagName("CONGRANT_INVEST");
         String investsString = "";
@@ -325,6 +349,12 @@ public class CongrantProcessor extends AbstractProcessor {
         return investsString;
     }
 
+    /** 
+     * Get the role of the congrant's  main investigator of a congrant tag
+     * 
+     * @param congrantNode the congrant tag node to process
+     * @return A string representing the role of the congrant's  main investigator
+     */
     private String getCongrantInvestRole(Element congrantNode) {
         NodeList investList = congrantNode.getElementsByTagName("CONGRANT_INVEST");
         String investRole = null;

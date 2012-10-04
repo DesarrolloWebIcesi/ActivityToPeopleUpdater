@@ -100,6 +100,14 @@ public class FacdevProcessor extends AbstractProcessor {
         }
     }
 
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param background A M4scoHrCompBack Object in which the information will be saved
+     * @param facdevNode The entity node that will be processed
+     * 
+     * @return A filled M4scoHrCompBack Object
+     */
     private M4scoHrCompBack processBackground(M4scoHrCompBack background, Element facdevNode) {
         String facdevDesc = DocumentProcessor.getTagValue("DESC", facdevNode);
         if (facdevDesc != null && !facdevDesc.equalsIgnoreCase("")) {
@@ -176,6 +184,12 @@ public class FacdevProcessor extends AbstractProcessor {
         return background;
     }
 
+    /** 
+     * Get the code in PeopleNet system of a facdev TYPE tag
+     * 
+     * @param facdevType An string for which the code will be looked
+     * @return The PeopleNet system code for the facdevType param
+     */
     private String getFacdevTypeCode(String facdevType) {
         String facdevTypeCode = this.OTHER_TYPE;
         switch (facdevType) {

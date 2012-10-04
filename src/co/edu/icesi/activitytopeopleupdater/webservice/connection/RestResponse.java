@@ -21,7 +21,7 @@ import javax.xml.transform.stream.StreamSource;
 /**
  * RestResponse
  *
- * @author 1130619373
+ * @author David Andrés manzano Herrera - damanzano
  */
 public class RestResponse {
 

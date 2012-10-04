@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 /**
  * RestConnection
  *
- * @author David Andrés Manzano Herrera
+ * @author David Andrés Manzano Herrera - damanzano
  */
 public class RestConnection {
     
@@ -74,6 +74,9 @@ public class RestConnection {
         }
     }
     
+    /** 
+     * Set the default authenticator for connection
+     */
     public void setAuthenticator(Authenticator authenticator) {
         Authenticator.setDefault(authenticator);
     }

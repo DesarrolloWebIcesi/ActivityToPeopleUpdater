@@ -19,7 +19,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 /**
- *
+ * 
  * @author David Andrés Manzano Herrera - damanzano
  */
 public class ActivityInsightUserSchemasService {
@@ -28,6 +28,12 @@ public class ActivityInsightUserSchemasService {
     public final static String USER_BASESCHEMA_SERVICE_URL = "/login/service/v4/UserSchema/USERNAME:";
     public final static String INIDIVIDUAL_ACTIVITIES_SCHEMA="/INDIVIDUAL-ACTIVITIES-AdministrativeandEconomicSciences";
     
+    /** 
+     * Returns a XML formated document that represent a schema's data of a professor in ActivityInsight system
+     * 
+     * @param username The identification of the processor in ActivityInsight system (cc)
+     * @param schema The ActivityInsight's schema tha will be consulted.
+     */
     public static Document getUserSchema(String username, String schema) throws IOException, ParserConfigurationException, SAXException{
         RestConnection restConn = new RestConnection(webServiceBaseUrl+USER_BASESCHEMA_SERVICE_URL+username+schema);
         ActivityInsightAuthenticator.login();
@@ -47,6 +53,13 @@ public class ActivityInsightUserSchemasService {
         return doc;
     }
     
+   /** 
+     * Returns a XML formated document that represent a schema's data of a professor in ActivityInsight system
+     * 
+     * @param professor  A Professor Object that represent the professor taht will be consulted
+     * @param schema The ActivityInsight's schema tha will be consulted.
+     * @see getUserSchema(String username, String schema)
+     */
     public static Document getUserSchema(Professor professor, String schema) throws IOException, ParserConfigurationException, SAXException{
         return  getUserSchema(professor.getUsername(),schema);
     }

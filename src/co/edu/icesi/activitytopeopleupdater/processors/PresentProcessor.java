@@ -122,6 +122,14 @@ public class PresentProcessor extends AbstractProcessor{
         }
     }
 
+    /** 
+     * Process an entity's information and saves it in PeopleNet database objects 
+     * 
+     * @param presentation A M4ccbCvPresentac Object in which the information will be saved
+     * @param presentNode The entity node that will be processed
+     * 
+     * @return A filled M4ccbCvPresentac Object
+     */
     private M4ccbCvPresentac processPresentation(M4ccbCvPresentac presentation, Element presentNode) {
         
         String otherAuthors = getPresentOtherAuthors(presentNode);
@@ -244,6 +252,12 @@ public class PresentProcessor extends AbstractProcessor{
         return presentation;
     }
     
+    /** 
+     * Get the authors' names of a present tag separeted by /
+     * 
+     * @param presentNode the congrant tag node to process
+     * @return A string of concatened authors' names of the congrant node passed as param.
+     */
     private String getPresentOtherAuthors(Element presentNode) {
         NodeList authorList = presentNode.getElementsByTagName("PRESENT_AUTH");
         String authorsString = "";
@@ -288,6 +302,12 @@ public class PresentProcessor extends AbstractProcessor{
         return authorsString;
     }
     
+    /** 
+     * Get the code in PeopleNet system of a present SCOPE tag
+     * 
+     * @param presentScope An string for which the code will be looked
+     * @return The PeopleNet system code for the presentScope param
+     */
     private String getPresentScopeCode(String presentScope){
         String presentScopeCode="";
         switch(presentScope){
@@ -319,6 +339,12 @@ public class PresentProcessor extends AbstractProcessor{
         return presentScopeCode;
     }
     
+    /** 
+     * Get the code in PeopleNet system of a present CLASSIFICATION tag
+     * 
+     * @param presentClassification An string for which the code will be looked
+     * @return The PeopleNet system code for the presentClassification param
+     */
     private String getPresentClassificationCode(String presentClassification){
         String presentClassificationCode=this.OTHER_CLASSIFICATION;
         switch(presentClassification){
@@ -335,6 +361,12 @@ public class PresentProcessor extends AbstractProcessor{
         return presentClassificationCode;
     }
     
+    /** 
+     * Get the code in PeopleNet system of a present TYPE tag
+     * 
+     * @param presentType An string for which the code will be looked
+     * @return The PeopleNet system code for the presentType param
+     */
     private String getPresentTypeCode(String presentType){
         String presentationTypeCode=this.OTHER_TYPE;
         switch(presentType){
@@ -367,6 +399,12 @@ public class PresentProcessor extends AbstractProcessor{
         return presentationTypeCode;
     }
     
+    /** 
+     * Get the code in PeopleNet system of a present METTYPE tag
+     * 
+     * @param presentMeetingType An string for which the code will be looked
+     * @return The PeopleNet system code for the presentType param
+     */
     private String getPresentMeetingTypeCode (String presentMeetingType){
         String presentMeetingTypeCode=this.OTHER_METTYPE;
         switch(presentMeetingType){
@@ -392,6 +430,12 @@ public class PresentProcessor extends AbstractProcessor{
         return presentMeetingTypeCode;
     }
     
+    /** 
+     * Get the role of the present's  main author of a present tag
+     * 
+     * @param presentNode the congrant tag node to process
+     * @return A string representing the role of the present's  main author
+     */
     private String getPresentAuthorRole(Element presentNode) {
         NodeList authorList = presentNode.getElementsByTagName("PRESENT_AUTH");
         String authorRole = null;

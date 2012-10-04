@@ -11,9 +11,10 @@ import java.util.Date;
 import java.util.Locale;
 import org.apache.log4j.Logger;
 
-/**
+/** 
+ * Parsing dates utils
  *
- * @author 38555240
+ * @author Blanca Gomez - bogomez
  */
 public class DateFormats {
 
@@ -22,6 +23,11 @@ public class DateFormats {
     public DateFormats() {
     }
 
+    /** 
+     * Returns the actual date in dd/MM/YYYY format
+     * 
+     * @return A string representing the actual date in dd/MM/YYYY format
+     */
     public static String fechaActual() {
 
         java.util.Date date = new java.util.Date();
@@ -31,22 +37,13 @@ public class DateFormats {
         return fecha;
 
     }
-    /*
-     * public String dateFormat(String pDate) throws ParseException {
-     *
-     * DateFormat outputFormat = new SimpleDateFormat("dd/MM/YYYY"); DateFormat
-     * inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-     *
-     *
-     * Date date = inputFormat.parse(pDate); String outputText =
-     * outputFormat.format(date);
-     *
-     *
-     * return outputText;
-     *
-     * }
+    
+    /** 
+     * Create a Date object from an input string in dd/MM/YYYY format
+     * 
+     * @param fecha An input string in dd/MM/YYYY format
+     * @return Date object representing the date passed in param
      */
-
     public static Date DeStringADate(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String strFecha = fecha;

@@ -169,7 +169,7 @@ public class AwardhonorProcessor extends AbstractProcessor {
     }
 
     /** 
-     * Get the code in PeopleNet system of an award scope tag
+     * Get the code in PeopleNet system of an award SCOPE tag
      * 
      * @param awardScope An string for which the code will be looked
      * @return The PeopleNet system code for the awardScope param
@@ -202,7 +202,7 @@ public class AwardhonorProcessor extends AbstractProcessor {
     }
 
     /** 
-     * Get the code in PeopleNet system of an award scope tag
+     * Get the code in PeopleNet system of an award SCOPE_LOCALE tag
      * 
      * @param awardScopelocale An string for which the code will be looked
      * @return The PeopleNet system code for the awardScopelocale param
