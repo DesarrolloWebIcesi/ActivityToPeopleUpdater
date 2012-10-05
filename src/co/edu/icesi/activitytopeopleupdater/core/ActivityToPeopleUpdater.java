@@ -34,7 +34,6 @@ public class ActivityToPeopleUpdater {
     public static void main(String[] args) throws NonexistentEntityException {
         // TODO code application logic here
         logger.info("Starting ActitvityToPeopleUpdater");
-        // Initialize the configurarion manager
         
         List<Thread> threads = new ArrayList<>();
         List<Professor> professors = ActivityInsightUsersService.getProfessors();
