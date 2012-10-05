@@ -51,7 +51,7 @@ public class ActivityInsightUsersService {
     /*
      * Controller for the PeopleNet database access
      */
-    private static StdPersonJpaController stdPersonController = new StdPersonJpaController();
+    private static StdPersonJpaController stdPersonController = new StdPersonJpaController(ConfigurationManager.getEntityManageFactory());
 
     /**
      * Get the list of professor extracted from webservice, invokes the

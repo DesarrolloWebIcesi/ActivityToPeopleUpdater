@@ -7,7 +7,6 @@ package co.edu.icesi.activitytopeopleupdater.processors;
 import co.edu.icesi.activitytopeopleupdater.core.ConfigurationManager;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.model.Professor;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -24,7 +23,7 @@ public abstract class AbstractProcessor {
     protected NodeList entities;
     protected String entitie;
     protected final String ORGANIZATION_CODE = "0000";
-    protected final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU",ConfigurationManager.getDatabaseProperties());
+    protected final EntityManagerFactory EMF = ConfigurationManager.getEntityManageFactory();
 
     /**
      * AbstractProcessor Constructor

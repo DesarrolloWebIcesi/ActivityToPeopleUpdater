@@ -13,6 +13,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
 import org.apache.log4j.helpers.OptionConverter;
@@ -306,12 +308,22 @@ public class ConfigurationManager {
      * 
      * @return Map object with the necesary database properties
      */
-    public static Map getDatabaseProperties(){
+    private static Map getDatabaseProperties(){
         Map databaseProperties = new HashMap();
         databaseProperties.put("javax.persistence.jdbc.driver", getProperty("db.driver"));
         databaseProperties.put("javax.persistence.jdbc.url", getProperty("db.url"));
         databaseProperties.put("javax.persistence.jdbc.user", getProperty("db.user"));
         databaseProperties.put("javax.persistence.jdbc.password", getProperty("db.password"));
         return databaseProperties;
+    }
+    
+    /** 
+     * Get the database EntityManagerFactory
+     * 
+     * @return A EntityManagerFactory object configured with the data stored in 
+     * activitytopeople.properties file.
+     */
+    public static EntityManagerFactory getEntityManageFactory(){
+        return Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU",getDatabaseProperties());
     }
 }

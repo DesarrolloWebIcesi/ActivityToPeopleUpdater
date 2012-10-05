@@ -156,9 +156,9 @@ public class StdPersonJpaController implements Serializable {
     }
 
     public String userPeople(String idProfesor) throws NonexistentEntityException {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU");
+        //EntityManagerFactory emf = Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU");
         String idPeoplef;
-        emP = emf.createEntityManager();
+        emP = getEntityManager();
         stdPerson = new StdPerson();
         m4ccbHrCc = new M4ccbHrCc();
         m4ccbHrCcPk = new M4ccbHrCcPK();
