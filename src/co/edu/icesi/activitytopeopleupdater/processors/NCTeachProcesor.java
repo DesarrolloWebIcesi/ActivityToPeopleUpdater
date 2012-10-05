@@ -53,7 +53,7 @@ public class NCTeachProcesor extends AbstractProcessor{
     /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
-        M4ccbCvCurCdurJpaController coursesController = new M4ccbCvCurCdurJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4ccbCvCurCdurJpaController coursesController = new M4ccbCvCurCdurJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element ncteachNode = (Element) this.entities.item(i);

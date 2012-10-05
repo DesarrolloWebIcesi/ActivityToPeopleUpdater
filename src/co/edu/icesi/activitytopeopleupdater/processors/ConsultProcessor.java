@@ -57,7 +57,7 @@ public class ConsultProcessor extends AbstractProcessor {
          * TODO implement the processor funtionality, you can start with
          * crossing the entities atribute
          */
-        M4ccbCvConsultJpaController vConsultActivitiesController = new M4ccbCvConsultJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4ccbCvConsultJpaController vConsultActivitiesController = new M4ccbCvConsultJpaController(this.EMF);
 
         for (int i = 0; i < this.entities.getLength(); i++) {
 

@@ -52,7 +52,7 @@ public class EducationProcessor extends AbstractProcessor {
     /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
-        StdHrAcadBackgrJpaController academicBgsController = new StdHrAcadBackgrJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        StdHrAcadBackgrJpaController academicBgsController = new StdHrAcadBackgrJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element educationNode = (Element) this.entities.item(i);

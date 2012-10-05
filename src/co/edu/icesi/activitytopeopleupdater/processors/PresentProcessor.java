@@ -74,7 +74,7 @@ public class PresentProcessor extends AbstractProcessor{
     /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
-        M4ccbCvPresentacJpaController presentationsController = new M4ccbCvPresentacJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4ccbCvPresentacJpaController presentationsController = new M4ccbCvPresentacJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element presentNode = (Element) this.entities.item(i);

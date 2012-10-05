@@ -46,8 +46,8 @@ public class PasthistProcessor extends AbstractProcessor {
     @Override
     protected synchronized void runProcesor() {
 
-        StdHrPrevJobsJpaController vPrevJobsController = new StdHrPrevJobsJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvExpDocJpaController vExpDocController = new M4ccbCvExpDocJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        StdHrPrevJobsJpaController vPrevJobsController = new StdHrPrevJobsJpaController(this.EMF);
+        M4ccbCvExpDocJpaController vExpDocController = new M4ccbCvExpDocJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             Element jobsNode = (Element) this.entities.item(i);
             String jobsId = jobsNode.getAttribute("id")+ ":" + this.professor.getUsername();

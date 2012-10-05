@@ -32,37 +32,10 @@
     <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvNormaN</class>
     <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvSoftReg</class>
     <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.StdPerson</class>
-    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvActInves_1</class>
-    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvConsult_1</class>
-    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvCurCdur_1</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvActInves</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvConsult</class>
+    <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvCurCdur</class>
     <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbHrCc</class>
     <class>co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvDistinci</class>
-    <!-- Development -->
-    
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.220.120:1521:ddelfi"/>
-      <property name="javax.persistence.jdbc.password" value="Passw0rd"/>
-      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-      <property name="javax.persistence.jdbc.user" value="ddelfi"/>
-    </properties>
-   
-    <!-- Pre-production -->
-    <!--
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.220.120:1521:ddelfi"/>
-      <property name="javax.persistence.jdbc.password" value="wJauzXQoAW"/>
-      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-      <property name="javax.persistence.jdbc.user" value="adelfi"/>
-    </properties>
-    -->
-    <!-- Production waiting for data arrival-->
-    <!--
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.220.120:1521:ddelfi"/>
-      <property name="javax.persistence.jdbc.password" value="wJauzXQoAW"/>
-      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-      <property name="javax.persistence.jdbc.user" value="adelfi"/>
-    </properties>
-    -->
   </persistence-unit>
 </persistence>

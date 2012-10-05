@@ -4,7 +4,10 @@
  */
 package co.edu.icesi.activitytopeopleupdater.processors;
 
+import co.edu.icesi.activitytopeopleupdater.core.ConfigurationManager;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.model.Professor;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -21,10 +24,11 @@ public abstract class AbstractProcessor {
     protected NodeList entities;
     protected String entitie;
     protected final String ORGANIZATION_CODE = "0000";
+    protected final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU",ConfigurationManager.getDatabaseProperties());
 
-    /** 
+    /**
      * AbstractProcessor Constructor
-     * 
+     *
      * @param professor The professor for who the processor will be run.
      * @param entitie The class of entity the processor will run.
      */
@@ -36,11 +40,15 @@ public abstract class AbstractProcessor {
             this.entities = getEntities();
         }
     }
-    
-    /** Actually do the task of the processor */
+
+    /**
+     * Actually do the task of the processor
+     */
     protected abstract void runProcesor();
 
-    /** Validates atributes and call runProcesor() method*/
+    /**
+     * Validates atributes and call runProcesor() method
+     */
     public void run() {
         abstracLogger.info("Starting " + this.entitie + " processor for user " + professor.getUsername());
         int entitiesLength = 0;
@@ -50,7 +58,7 @@ public abstract class AbstractProcessor {
             try {
                 entitiesLength = this.entities.getLength();
             } catch (NullPointerException ex) {
-                error=true;
+                error = true;
                 abstracLogger.error("Error getting the number of " + this.entitie + " records", ex);
                 trynumbers++;
                 if (trynumbers < 4) {
@@ -76,7 +84,9 @@ public abstract class AbstractProcessor {
         abstracLogger.info(this.entitie + " processor for user " + professor.getUsername() + " finished");
     }
 
-    /** Get the list of node that match the processor's entity class */
+    /**
+     * Get the list of node that match the processor's entity class
+     */
     private NodeList getEntities() {
         return this.xmlDocument.getElementsByTagName(this.entitie);
     }

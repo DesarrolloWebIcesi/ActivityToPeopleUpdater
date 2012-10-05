@@ -60,7 +60,7 @@ public class DSLProcessor extends AbstractProcessor {
     /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
-        M4ccbCvJurComJpaController dslController = new M4ccbCvJurComJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4ccbCvJurComJpaController dslController = new M4ccbCvJurComJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element dslNode = (Element) this.entities.item(i);

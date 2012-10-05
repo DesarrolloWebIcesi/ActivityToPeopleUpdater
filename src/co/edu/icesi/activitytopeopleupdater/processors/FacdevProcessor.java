@@ -51,7 +51,7 @@ public class FacdevProcessor extends AbstractProcessor {
     /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
-        M4scoHrCompBackJpaController backgroundController = new M4scoHrCompBackJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4scoHrCompBackJpaController backgroundController = new M4scoHrCompBackJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element facdevNode = (Element) this.entities.item(i);

@@ -1704,16 +1704,16 @@ public class IntellcontProcessor extends AbstractProcessor {
     @Override
     protected synchronized void runProcesor() {
 
-        M4ccbCvLibroJpaController vLibroActivitiesController = new M4ccbCvLibroJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvArtPubJpaController vrevistaActivitiesController = new M4ccbCvArtPubJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvCapLibJpaController vCapLbActivitiesController = new M4ccbCvCapLibJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvSoftRegJpaController vSoftRegActivitiesController = new M4ccbCvSoftRegJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvTrabTecnJpaController vTrabTecActivitiesController = new M4ccbCvTrabTecnJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvEdicionRJpaController vEdRActivitiesController = new M4ccbCvEdicionRJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvDocTrabJpaController vDocTrabActivitiesController = new M4ccbCvDocTrabJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvDlloMatJpaController vDocDlloActivitiesController = new M4ccbCvDlloMatJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        M4ccbCvPrefEpilJpaController vPrefEpilActivitiesController = new M4ccbCvPrefEpilJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
-        StdHrLangTransJpaController vTransController = new StdHrLangTransJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4ccbCvLibroJpaController vLibroActivitiesController = new M4ccbCvLibroJpaController(this.EMF);
+        M4ccbCvArtPubJpaController vrevistaActivitiesController = new M4ccbCvArtPubJpaController(this.EMF);
+        M4ccbCvCapLibJpaController vCapLbActivitiesController = new M4ccbCvCapLibJpaController(this.EMF);
+        M4ccbCvSoftRegJpaController vSoftRegActivitiesController = new M4ccbCvSoftRegJpaController(this.EMF);
+        M4ccbCvTrabTecnJpaController vTrabTecActivitiesController = new M4ccbCvTrabTecnJpaController(this.EMF);
+        M4ccbCvEdicionRJpaController vEdRActivitiesController = new M4ccbCvEdicionRJpaController(this.EMF);
+        M4ccbCvDocTrabJpaController vDocTrabActivitiesController = new M4ccbCvDocTrabJpaController(this.EMF);
+        M4ccbCvDlloMatJpaController vDocDlloActivitiesController = new M4ccbCvDlloMatJpaController(this.EMF);
+        M4ccbCvPrefEpilJpaController vPrefEpilActivitiesController = new M4ccbCvPrefEpilJpaController(this.EMF);
+        StdHrLangTransJpaController vTransController = new StdHrLangTransJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             int rangLb = 0;
             Element pLibroNode = (Element) this.entities.item(i);

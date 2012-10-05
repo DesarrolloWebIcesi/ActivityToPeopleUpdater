@@ -48,7 +48,7 @@ public class ServicePublicProcessor extends AbstractProcessor{
     /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
-        M4scoAssocMeJpaController associationsController = new M4scoAssocMeJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4scoAssocMeJpaController associationsController = new M4scoAssocMeJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element multipleNode = (Element) this.entities.item(i);

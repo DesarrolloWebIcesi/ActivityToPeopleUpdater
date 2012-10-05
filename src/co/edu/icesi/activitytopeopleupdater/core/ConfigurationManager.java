@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import org.apache.log4j.Category;
 import org.apache.log4j.Logger;
@@ -155,7 +157,9 @@ public class ConfigurationManager {
 
                 url = loadedFile.toURI().toURL();
             } else {
-                url = ConfigurationManager.class.getResource("/activitytopeople.properties");
+                //url = ConfigurationManager.class.getResource("config/activitytopeople.properties");
+                loadedFile = new File("config/activitytopeople.properties");
+                url = loadedFile.toURI().toURL();
                 if (url != null) {
                     info("Loading from classloader: " + url);
                     loadedFile = new File(url.getPath());
@@ -295,5 +299,19 @@ public class ConfigurationManager {
             result.append(value.substring(from));
         }
         return (result == null) ? null : result.toString();
+    }
+    
+    /** 
+     * Return a Map object with the necesary properties to configure persistence.xml
+     * 
+     * @return Map object with the necesary database properties
+     */
+    public static Map getDatabaseProperties(){
+        Map databaseProperties = new HashMap();
+        databaseProperties.put("javax.persistence.jdbc.driver", getProperty("db.driver"));
+        databaseProperties.put("javax.persistence.jdbc.url", getProperty("db.url"));
+        databaseProperties.put("javax.persistence.jdbc.user", getProperty("db.user"));
+        databaseProperties.put("javax.persistence.jdbc.password", getProperty("db.password"));
+        return databaseProperties;
     }
 }

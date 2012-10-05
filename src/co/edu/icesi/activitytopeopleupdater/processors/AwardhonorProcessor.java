@@ -57,7 +57,7 @@ public class AwardhonorProcessor extends AbstractProcessor {
     @Override
     protected synchronized void runProcesor() {
 
-        M4ccbCvDistincJpaController distinctionsController = new M4ccbCvDistincJpaController(Persistence.createEntityManagerFactory("ActivityToPeopleUpdaterPU"));
+        M4ccbCvDistincJpaController distinctionsController = new M4ccbCvDistincJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element awardNode = (Element) this.entities.item(i);
