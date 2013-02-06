@@ -6,7 +6,6 @@ package co.edu.icesi.activitytopeopleupdater.peoplenet.dao;
 
 import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.exceptions.NonexistentEntityException;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.exceptions.PreexistingEntityException;
-import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvSoftReg;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabDir;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabDirPK;
 import java.io.Serializable;

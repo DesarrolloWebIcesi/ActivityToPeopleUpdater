@@ -108,6 +108,22 @@ public class EducationProcessor extends AbstractProcessor {
      * @param educationNode The entity node that will be processed
      * 
      * @return A filled StdHrAcadBackgr Object
+     * 
+     * @since 2012-11-28 damanzano 
+     * The method was modified in order to fill the requirements of the Hoja de vida Profesores project.
+     * Specifically:
+     * 1. The missconception error between MAJOR, SUPAREA, and DEGOTHER fields was fixed.
+     * the ActivityInsight MAJOR tag must be saved into the PeoploNet CCB_OTRO_ESPEC field 
+     * and the SUPPAREA tag into CCB_OTRO_T_FORM field.
+     * 
+     * 2. Setting default values to STD_ID_EDU_SP and STD_ID_EDU_TYPE fields
+     * 
+     * 3. Create a workaround to the imcomplete dates.
+     * Put month 01 and day 01 in PeopleNet date fields for which ActivityInsight tags do not have
+     * a complete date.
+     * 
+     * 4. Replace STD_DESC_EDU_CENTER field's substring restriction to 2000 characters.
+     * 
      */
     private StdHrAcadBackgr processAcademicBg(StdHrAcadBackgr academicBg, Element educationNode) {
         String isHighest = DocumentProcessor.getTagValue("HIGHEST", educationNode);
@@ -117,16 +133,19 @@ public class EducationProcessor extends AbstractProcessor {
             academicBg.setCcbMaxTituObt("0");
         }
         
+        String academicBgMajor=DocumentProcessor.getTagValue("MAJOR", educationNode);
+        if(academicBgMajor!=null && !academicBgMajor.equalsIgnoreCase("")){
+            academicBg.setCcbOtroEspec(academicBgMajor);
+        }
+        
         String academicBgArea=DocumentProcessor.getTagValue("SUPPAREA", educationNode);
         if(academicBgArea!=null && !academicBgArea.equalsIgnoreCase("")){
-            //FIXED
-            //academicBg.setCcbOtroTitul(academicBgArea);
-            academicBg.setCcbOtroEspec(academicBgArea);
+            academicBg.setCcbOtroTForm(academicBgArea);
         }
         
         String academicBgTitulation=DocumentProcessor.getTagValue("DEGOTHER", educationNode);
         if(academicBgTitulation!=null && !academicBgTitulation.equals("")){
-            academicBg.setCcbOtroTForm(academicBgTitulation);
+            academicBg.setCcbOtroTitul(academicBgTitulation);
         }
         
         String dissertationTitle=DocumentProcessor.getTagValue("DISSTITLE", educationNode);
@@ -150,12 +169,14 @@ public class EducationProcessor extends AbstractProcessor {
         }
         
         /** 
-         * FIXME: I decide always saving the OTHER=000 value, beacuse the match between the value in ActivityInsight
+         * It was decided always saving the OTHER=000 value, beacuse the match between the value in ActivityInsight
          * and the universities list in PeopleNet is really tought to do comparing universities names strings
          * besides the input for the same university can be diferent in both systems, for example: lowercase
          * uppercase and special chars 
          */
         academicBg.setStdIdEduCenter("000");
+        academicBg.setStdIdEduSp("999");
+        academicBg.setStdIdEduType("9999");
         
         String institution=DocumentProcessor.getTagValue("SCHOOL", educationNode);
         if(institution!=null && !institution.equalsIgnoreCase("")){
@@ -163,14 +184,13 @@ public class EducationProcessor extends AbstractProcessor {
              * FIXME: Trunc in 254 because that is the lenght of the field in PeopleNet system
              * replace after to 1000.             
              */
-            if(institution.length()>254){
-                academicBg.setStdDescEduCenter(institution.substring(0, 253));
+            if(institution.length()>2000){
+                academicBg.setStdDescEduCenter(institution.substring(0, 2000));
             }else{
                 academicBg.setStdDescEduCenter(institution);
             }
         }
         
-        //FIXME: I decide saving the same value of the web service - damanzano
         String academicBgDegree=DocumentProcessor.getTagValue("DEG", educationNode);
         if(academicBgDegree!=null && !academicBgDegree.equalsIgnoreCase("")){
             /** 
