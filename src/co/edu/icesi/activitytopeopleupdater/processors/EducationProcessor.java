@@ -169,9 +169,9 @@ public class EducationProcessor extends AbstractProcessor {
         }
         
         /** 
-         * It was decided always saving the OTHER=000 value, beacuse the match between the value in ActivityInsight
-         * and the universities list in PeopleNet is really tought to do comparing universities names strings
-         * besides the input for the same university can be diferent in both systems, for example: lowercase
+         * It was decided always saving the OTHER=000 value, because the match between the value in ActivityInsight
+         * and the universities list in PeopleNet is really hard to do comparing universities names strings
+         * besides the input for the same university can be different in both systems, for example: lowercase
          * uppercase and special chars 
          */
         academicBg.setStdIdEduCenter("000");
@@ -195,7 +195,7 @@ public class EducationProcessor extends AbstractProcessor {
         if(academicBgDegree!=null && !academicBgDegree.equalsIgnoreCase("")){
             /** 
              * The line below was commented because there was an error in the map document
-             * and the degree level must be seved in the STD_id_DIPLOMA field.
+             * and the degree level must be saved in the STD_id_DIPLOMA field.
              */
             //academicBg.setSukIdQualLevel(academicBgDegree);
             academicBg.setStdIdDiploma(getEducationDegreeCode(academicBgDegree));
