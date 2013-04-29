@@ -131,6 +131,10 @@ public class EducationProcessor extends AbstractProcessor {
      * 4. Replace STD_DESC_EDU_CENTER field's substring restriction to 2000
      * characters.
      *
+     * @since v2.0 This method was modified to ensure the change of the
+     * PeopleNet database values to "" when a value in ActivityInsight is
+     * erased.
+     *
      */
     private StdHrAcadBackgr processAcademicBg(StdHrAcadBackgr academicBg, Element educationNode) {
         String isHighest = DocumentProcessor.getTagValue("HIGHEST", educationNode);
@@ -143,42 +147,56 @@ public class EducationProcessor extends AbstractProcessor {
         String academicBgMajor = DocumentProcessor.getTagValue("MAJOR", educationNode);
         if (academicBgMajor != null && !academicBgMajor.equalsIgnoreCase("")) {
             academicBg.setCcbOtroEspec(academicBgMajor);
+        } else {
+            academicBg.setCcbOtroEspec("");
         }
 
         String academicBgArea = DocumentProcessor.getTagValue("SUPPAREA", educationNode);
         if (academicBgArea != null && !academicBgArea.equalsIgnoreCase("")) {
             academicBg.setCcbOtroTForm(academicBgArea);
+        } else {
+            academicBg.setCcbOtroTForm("");
         }
 
         String academicBgTitulation = DocumentProcessor.getTagValue("DEGOTHER", educationNode);
         if (academicBgTitulation != null && !academicBgTitulation.equals("")) {
             academicBg.setCcbOtroTitul(academicBgTitulation);
+        } else {
+            academicBg.setCcbOtroTitul("");
         }
 
         String dissertationTitle = DocumentProcessor.getTagValue("DISSTITLE", educationNode);
         if (dissertationTitle != null && !dissertationTitle.equalsIgnoreCase("")) {
             academicBg.setCcbTituTrab(dissertationTitle);
+        } else {
+            academicBg.setCcbTituTrab("");
         }
 
         String academicBgDistinction = DocumentProcessor.getTagValue("DISTINCTION", educationNode);
         if (academicBgDistinction != null && !academicBgDistinction.equalsIgnoreCase("")) {
             academicBg.setCcbValorOpt(academicBgDistinction);
+        } else {
+            academicBg.setCcbValorOpt("");
         }
 
         String academicBgYearComp = DocumentProcessor.getTagValue("YR_COMP", educationNode);
         if (academicBgYearComp != null && !academicBgYearComp.equalsIgnoreCase("")) {
             academicBg.setCcbYearTerm(academicBgYearComp);
+        } else {
+            academicBg.setCcbYearTerm("");
         }
 
         String institutionLocation = DocumentProcessor.getTagValue("LOCATION", educationNode);
         if (institutionLocation != null && !institutionLocation.equalsIgnoreCase("")) {
             academicBg.setStdComment(institutionLocation);
+        } else {
+            academicBg.setStdComment("");
         }
 
         /**
          * It was decided always saving the OTHER=000 value, because the match
          * between the value in ActivityInsight and the universities list in
-         * PeopleNet is really hard to do comparing universities names strings
+         * PeopleNet is really hard to do, comparing universities names strings,
          * besides the input for the same university can be different in both
          * systems, for example: lowercase uppercase and special chars
          */
@@ -197,6 +215,8 @@ public class EducationProcessor extends AbstractProcessor {
             } else {
                 academicBg.setStdDescEduCenter(institution);
             }
+        } else {
+            academicBg.setStdDescEduCenter("");
         }
 
         String academicBgDegree = DocumentProcessor.getTagValue("DEG", educationNode);
@@ -223,60 +243,60 @@ public class EducationProcessor extends AbstractProcessor {
      * @param educationDegree An string for which the code will be looked
      * @return The PeopleNet system code for the educationDegree param
      * @since v2.0 This method was modified to map each ActivityInsight degree
-     * code with a diferent PeopleNet degree code as follows:
+     * code with a diferent PeopleNet degree code as follows: 
      * Activity Code ----> People value(code) 
-     * BA   ----> Pregrado(006)
-     * BBA  ----> Pregrado(006)
-     * BS   ----> Pregrado(006)
-     * DBA  ----> Ph.D(Ph.D)
-     * EDD  ----> Ph.D(Ph.D)
-     * JD   ----> Pregrado(006)
-     * LLM  ----> Maestría(008)
-     * MA   ----> Maestría en Artes/Especialización(007)
-     * MBA  ----> Maestría(008)
-     * MS   ----> Maestría(008)
+     * BA ----> Pregrado(006) 
+     * BBA ----> Pregrado(006)
+     * BS ----> Pregrado(006) 
+     * DBA ----> Ph.D(Ph.D) 
+     * EDD ----> Ph.D(Ph.D) 
+     * JD ----> Pregrado(006) 
+     * LLM ----> Maestría(008) 
+     * MA ----> Maestría en Artes/Especialización(007) 
+     * MBA ----> Maestría(008) 
+     * MS ----> Maestría(008)
      * Ph D ----> Ph.D(Ph.D)
      */
     private String getEducationDegreeCode(String educationDegree) {
-        String degreeCode=this.OTHER_DEGREE;
-        switch(educationDegree){
+        String degreeCode = this.OTHER_DEGREE;
+        switch (educationDegree) {
             case "BA":
-                degreeCode=this.BACHELOR_ARTS_DEGREE;
+                degreeCode = this.BACHELOR_ARTS_DEGREE;
                 break;
             case "BBA":
-                degreeCode=this.BACHELOR_BUSINESS_DEGREE;
+                degreeCode = this.BACHELOR_BUSINESS_DEGREE;
                 break;
             case "BS":
-                degreeCode=this.BACHELOR_SCIENCES_DEGREE;
+                degreeCode = this.BACHELOR_SCIENCES_DEGREE;
                 break;
             case "DBA":
-                degreeCode=this.DOCTOR_BUSINESS_DEGREE;
+                degreeCode = this.DOCTOR_BUSINESS_DEGREE;
                 break;
             case "EDD":
-                degreeCode=this.DOCTOR_EDUCATION_DEGREE;
+                degreeCode = this.DOCTOR_EDUCATION_DEGREE;
                 break;
             case "JD":
-                degreeCode=this.JURIS_DOCTOR_DEGREE;
+                degreeCode = this.JURIS_DOCTOR_DEGREE;
                 break;
             case "LLM":
-                degreeCode=this.MASTER_LAWS_DEGREE;
+                degreeCode = this.MASTER_LAWS_DEGREE;
                 break;
             case "MA":
-                degreeCode=this.MASTER_ARTS_DEGREE;
+                degreeCode = this.MASTER_ARTS_DEGREE;
                 break;
             case "MBA":
-                degreeCode=this.MASTER_BUSINESS_DEGREE;
+                degreeCode = this.MASTER_BUSINESS_DEGREE;
                 break;
             case "MS":
-                degreeCode=this.MASTER_SCIENCES_DEGREE;
+                degreeCode = this.MASTER_SCIENCES_DEGREE;
                 break;
             case "Ph D":
-                degreeCode=this.PHD_DEGREE;
+                degreeCode = this.PHD_DEGREE;
                 break;
             default:
-                degreeCode=this.OTHER_DEGREE;
+                degreeCode = this.OTHER_DEGREE;
         }
-        
+
         return degreeCode;
     }
 }
