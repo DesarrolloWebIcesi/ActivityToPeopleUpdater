@@ -170,7 +170,7 @@ public class StdPersonJpaController implements Serializable {
              */
             //Query q = emP.createQuery("select p from StdPerson p where p.stdSsn=:PROFESOR_ID");
 
-            Query q = emP.createQuery("select p.stdPersonPK.stdIdPerson from StdPerson p,M4ccbHrCc c where p.stdSsn=:PROFESOR_ID and c.m4ccbHrCcPK.ccbCentroCosto  like 'CA01%' and p.stdPersonPK.stdIdPerson = c.m4ccbHrCcPK.stdIdHr");
+            Query q = emP.createQuery("select p.stdPersonPK.stdIdPerson from StdPerson p, M4ccbHrCc c where p.stdSsn=:PROFESOR_ID and (c.m4ccbHrCcPK.ccbCentroCosto  like 'CA01%' or c.m4ccbHrCcPK.ccbCentroCosto  like 'CA02%') and p.stdPersonPK.stdIdPerson = c.m4ccbHrCcPK.stdIdHr");
             q.setParameter("PROFESOR_ID", idProfesor);
             q.setMaxResults(1);
 

@@ -103,7 +103,7 @@ public class ActivityInsightUsersService {
                         if (userSchemas != null && userSchemas.getLength() > 0) {
 
                             try {
-                                //The professor must belong to the  Management and Economics' Faculty
+                                //The professor must belong to the  Management and Economics Faculty or Enginneering Faculty
                                 logger.info("Searching " + userNodeUsername + " in PeopleNet database");
                                 String userNodePeopleId = stdPersonController.userPeople(userNodeUsername);
                                 if (userNodePeopleId != null && !userNodePeopleId.equalsIgnoreCase("")) {

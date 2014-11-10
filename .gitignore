@@ -167,6 +167,7 @@ pip-log.txt
 ############
 ## Ignore project files created by NetBeans
 nbproject/private/
+nbproject/genfiles.properties
 build/
 nbbuild/
 dist/

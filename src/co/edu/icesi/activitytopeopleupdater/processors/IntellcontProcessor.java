@@ -235,6 +235,8 @@ public class IntellcontProcessor extends AbstractProcessor {
         String pIssue = DocumentProcessor.getTagValue("ISSUE", pRevistaNode);
         String pDtm = DocumentProcessor.getTagValue("DTM_ACC", pRevistaNode);
         String pDty = DocumentProcessor.getTagValue("DTY_ACC", pRevistaNode);
+        
+        //publication date parts
         String pDtd = DocumentProcessor.getTagValue("DTD_PUB", pRevistaNode);
         String pDtmPub = DocumentProcessor.getTagValue("DTM_PUB", pRevistaNode);
         String pDtyPub = DocumentProcessor.getTagValue("DTY_PUB", pRevistaNode);
@@ -320,7 +322,11 @@ public class IntellcontProcessor extends AbstractProcessor {
             pRevista.setCcbVolumen(pVolume);
         }
         if (pPagNum != null) {
-            pRevista.setCcbNumPag(pPagNum);
+            if(pPagNum.length() > 20){
+                pRevista.setCcbNumPag(pPagNum.substring(0, 20));
+            } else {
+                pRevista.setCcbNumPag(pPagNum);
+            }
         }
 
         if ("Yes".equals(pConfidencialidad)) {
@@ -336,10 +342,21 @@ public class IntellcontProcessor extends AbstractProcessor {
 
         if (pDtd != null && !pDtd.equalsIgnoreCase("")
                 && pDtmPub != null && !pDtmPub.equalsIgnoreCase("")
-                && pDtyPub != null && pDtyPub.equalsIgnoreCase("")) {
+                && pDtyPub != null && !pDtyPub.equalsIgnoreCase("")) {
             pRevista.setCcbFechaPub(DateFormats.fullStringToDate(pDtd + "/" + pDtmPub + "/" + pDtyPub));
 
+        }else{
+            if(pDtd == null || pDtd.equalsIgnoreCase("")){
+                pDtd = "01";
+            }
+            if(pDtmPub == null || pDtmPub.equalsIgnoreCase("")){
+                pDtmPub = "January";
+            }
+            if(pDtyPub != null && !pDtyPub.equalsIgnoreCase("")){
+                pRevista.setCcbFechaPub(DateFormats.fullStringToDate(pDtd + "/" + pDtmPub + "/" + pDtyPub));
+            }
         }
+        
         if (pDtdEx != null && !pDtdEx.equalsIgnoreCase("") && pDtmEx != null
                 && !pDtmEx.equalsIgnoreCase("")
                 && pDtyEx != null && !pDtyEx.equalsIgnoreCase("")) {
@@ -1698,9 +1715,6 @@ public class IntellcontProcessor extends AbstractProcessor {
         return pTraduccion;
     }
 
-    /**
-     * ****************************************************************************************************
-     */
     @Override
     protected synchronized void runProcesor() {
 
@@ -1722,6 +1736,7 @@ public class IntellcontProcessor extends AbstractProcessor {
             String vNodoType = DocumentProcessor.getTagValue("CONTYPE", pLibroNode);
 
             if (vNodoType != null) {
+                logger.debug("Searching TYPE_ID for " + this.entitie + " with id " + vLibroId +" and Type " + vNodoType);
                 pContype = getIdProdInt(vNodoType);
                 if (pContype != null) {
 
@@ -1804,7 +1819,8 @@ public class IntellcontProcessor extends AbstractProcessor {
                      * vTransController); }
                      */
                 } else {
-                    logger.error("No hay tipo para comparar");
+                    logger.error("TYPE_ID for " + this.entitie + " with id " + vLibroId +" and Type '" + vNodoType + "' not found");
+                    logger.info( this.entitie + " with id " + vLibroId + " ignored");
                 }
             }
         }//for

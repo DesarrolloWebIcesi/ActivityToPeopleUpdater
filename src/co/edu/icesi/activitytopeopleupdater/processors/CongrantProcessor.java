@@ -59,7 +59,7 @@ public class CongrantProcessor extends AbstractProcessor {
     protected synchronized void runProcesor() {
         M4ccbCvActInvesJpaController investActivitiesController = new M4ccbCvActInvesJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
-            //First verify if the activitie exist
+            //First verify if the activity exist
             Element congrantNode = (Element) this.entities.item(i);
             String congrantId = congrantNode.getAttribute("id")+":"+this.professor.getUsername();
             try {
