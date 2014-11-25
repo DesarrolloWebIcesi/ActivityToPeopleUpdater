@@ -1744,15 +1744,14 @@ public class IntellcontProcessor extends AbstractProcessor {
                     {
                         transaccionesLibro(vLibroId, pLibroNode, vLibroActivitiesController);
                     }
+
                     /*
                      * Revistas
                      */
-                    if (("CO_18".equals(pContype)) || ("CO_19".equals(pContype)) || ("CO_20".equals(pContype)) || ("CO_21".equals(pContype)) || ("CO_22".equals(pContype)) || ("CO_23".equals(pContype))) {
+                    if (("CO_18".equals(pContype)) || ("CO_19".equals(pContype)) || ("CO_20".equals(pContype)) || ("CO_21".equals(pContype)) || ("CO_22".equals(pContype)) || ("CO_23".equals(pContype)) || ("CO_27".equals(pContype))) {
                         transaccionesRevista(vLibroId, pLibroNode, vrevistaActivitiesController);
-
-                        //revistas
-
                     }
+                    
                     /**
                      * ****Capitulos Libros**********
                      */
@@ -2081,6 +2080,9 @@ public class IntellcontProcessor extends AbstractProcessor {
 
             case "Monograph/Research Report/Technical Report":
                 pCodSalida = "CO_26";
+                break;
+            case "Regular Column in Journal, Newspaper or Newsletter":
+                pCodSalida = "CO_27";
                 break;
             case "Software":
                 pCodSalida = "CO_28";
