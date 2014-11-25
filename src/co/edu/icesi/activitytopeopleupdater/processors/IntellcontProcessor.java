@@ -1748,7 +1748,7 @@ public class IntellcontProcessor extends AbstractProcessor {
                     /*
                      * Revistas
                      */
-                    if (("CO_18".equals(pContype)) || ("CO_19".equals(pContype)) || ("CO_20".equals(pContype)) || ("CO_21".equals(pContype)) || ("CO_22".equals(pContype)) || ("CO_23".equals(pContype)) || ("CO_27".equals(pContype))) {
+                    if (("CO_18".equals(pContype)) || ("CO_19".equals(pContype)) || ("CO_20".equals(pContype)) || ("CO_21".equals(pContype)) || ("CO_22".equals(pContype)) || ("CO_23".equals(pContype)) || ("CO_27".equals(pContype)) || ("CO_16".equals(pContype))) {
                         transaccionesRevista(vLibroId, pLibroNode, vrevistaActivitiesController);
                     }
                     
@@ -2044,9 +2044,11 @@ public class IntellcontProcessor extends AbstractProcessor {
             case "Book, Textbook-Revised":
                 pCodSalida = "CO_13";
                 break;
-
             case "Broadcast Media":
                 pCodSalida = "CO_14";
+                break;
+            case "Conference Proceeding":
+                pCodSalida = "CO_16";
                 break;
             case "Instructor's Manual":
                 pCodSalida = "CO_17";
