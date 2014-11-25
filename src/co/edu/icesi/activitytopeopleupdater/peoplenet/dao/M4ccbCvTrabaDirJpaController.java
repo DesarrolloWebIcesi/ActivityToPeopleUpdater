@@ -184,7 +184,7 @@ public class M4ccbCvTrabaDirJpaController implements Serializable {
     public short getMaxCcbOrTrabaDir(String stdIdHr, String idOrganization) {
         EntityManager em=getEntityManager();
         try{
-            Query q=em.createQuery("select max(m.m4ccbCvTrabaDirPK.ccbOrTrabaDir) "+
+            Query q=em.createQuery("select max(m.m4ccbCvTrabaDirPK.ccbOrTrabDir) "+
                                    "from M4ccbCvTrabaDir m "+
                                    "where m.m4ccbCvTrabaDirPK.stdIdHr = :stdIdHr "+
                                    "and m.m4ccbCvTrabaDirPK.idOrganization = :idOrganization");

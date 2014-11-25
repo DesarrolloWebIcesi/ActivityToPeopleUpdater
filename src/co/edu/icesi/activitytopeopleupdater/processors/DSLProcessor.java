@@ -142,19 +142,27 @@ public class DSLProcessor extends AbstractProcessor {
         String dtdEnd = DocumentProcessor.getTagValue("DTD_END", dslNode);
         String dtmEnd = DocumentProcessor.getTagValue("DTM_END", dslNode);
         String dtyEnd = DocumentProcessor.getTagValue("DTY_END", dslNode);
-        if (dtdEnd != null && !dtdEnd.equalsIgnoreCase("")
-                && dtmEnd != null && !dtmEnd.equalsIgnoreCase("")
-                && dtyEnd != null && !dtyEnd.equalsIgnoreCase("")) {
+        if (dtyEnd != null && !dtyEnd.equalsIgnoreCase("")) {
+            if (dtmEnd == null  || dtmEnd.equalsIgnoreCase("")){
+                dtmEnd = "01";
+            }
+            if(dtdEnd == null || dtdEnd.equalsIgnoreCase("")){
+                dtdEnd = "01";
+            }
             dsl.setCcbFechaFin(DateFormats.fullStringToDate(dtdEnd + "/" + dtmEnd + "/" + dtyEnd));
         }
 
         String dtdStart = DocumentProcessor.getTagValue("DTD_START", dslNode);
         String dtmStart = DocumentProcessor.getTagValue("DTM_START", dslNode);
         String dtyStart = DocumentProcessor.getTagValue("DTY_START", dslNode);
-        if (dtdStart != null && !dtdStart.equalsIgnoreCase("")
-                && dtmStart != null && !dtmStart.equalsIgnoreCase("")
-                && dtyStart != null && !dtyStart.equalsIgnoreCase("")) {
-            dsl.setCcbFechaIni(DateFormats.fullStringToDate(dtdStart + "/" + dtmStart + "/" + dtyStart));
+        if (dtyStart != null && !dtyStart.equalsIgnoreCase("")) {
+            if (dtmStart == null || dtmStart.equalsIgnoreCase("")){
+                dtmStart = "01";
+            }
+            if(dtdStart == null || dtdStart.equalsIgnoreCase("")){
+                dtdStart = "01";
+            }
+            dsl.setCcbFechaIni(DateFormats.fullStringToDate(dtdStart + "/" + dtmStart + "/" + dtdStart));
         }
 
         String dslCompstage = DocumentProcessor.getTagValue("COMPSTAGE", dslNode);
