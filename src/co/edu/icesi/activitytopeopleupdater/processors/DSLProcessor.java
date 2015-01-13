@@ -4,15 +4,13 @@
  */
 package co.edu.icesi.activitytopeopleupdater.processors;
 
-import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.M4ccbCvJurComJpaController;
+//import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.M4ccbCvJurComJpaController;
+//import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurCom;
+//import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurComPK;
 
 import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.M4ccbCvTrabaDirJpaController;
-
 import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.exceptions.NonexistentEntityException;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.exceptions.PreexistingEntityException;
-import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurCom;
-import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurComPK;
-
 import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabaDir;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabaDirPK;
 
@@ -109,9 +107,9 @@ public class DSLProcessor extends AbstractProcessor {
 
             } catch (NonUniqueResultException ex2) {
                 if (dslId != null) {
-                    logger.error("There are several registries with the same CCB_CARGUE_ACT value" + dslId + "in the PeopleNet system table " + M4ccbCvJurCom.class.getName(), ex2);
+                    logger.error("There are several registries with the same CCB_CARGUE_ACT value" + dslId + "in the PeopleNet system table " + M4ccbCvTrabaDir.class.getName(), ex2);
                 } else {
-                    logger.error("There are several registries with the same CCB_CARGUE_ACT value in the PeopleNet system table " + M4ccbCvJurCom.class.getName(), ex2);
+                    logger.error("There are several registries with the same CCB_CARGUE_ACT value in the PeopleNet system table " + M4ccbCvTrabaDir.class.getName(), ex2);
                 }
             }
         }
@@ -120,10 +118,10 @@ public class DSLProcessor extends AbstractProcessor {
     /** 
      * Process an entity's information and saves it in PeopleNet database objects 
      * 
-     * @param dsl A M4ccbCvJurCom Object in which the information will be saved
+     * @param dsl A M4ccbCvTrabaDir Object in which the information will be saved
      * @param dslNode The entity node that will be processed
      * 
-     * @return A filled M4ccbCvJurCom Object
+     * @return A filled M4ccbCvTrabaDir Object
      */
     private M4ccbCvTrabaDir processDSL(M4ccbCvTrabaDir dsl, Element dslNode) {
         String dslComment = DocumentProcessor.getTagValue("COMMENT", dslNode);
