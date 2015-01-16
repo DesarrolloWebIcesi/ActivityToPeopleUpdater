@@ -42,6 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "M4ccbCvTrabaDir.findByCcbIdEstadoAct", query = "SELECT m FROM M4ccbCvTrabaDir m WHERE m.ccbIdEstadoAct = :ccbIdEstadoAct"),
     @NamedQuery(name = "M4ccbCvTrabaDir.findByStdIdCountry", query = "SELECT m FROM M4ccbCvTrabaDir m WHERE m.stdIdCountry = :stdIdCountry"),
     @NamedQuery(name = "M4ccbCvTrabaDir.findByStdIdGeoDiv", query = "SELECT m FROM M4ccbCvTrabaDir m WHERE m.stdIdGeoDiv = :stdIdGeoDiv"),
+    @NamedQuery(name = "M4ccbCvTrabaDir.findByCcbCargueAct", query = "SELECT m FROM M4ccbCvTrabaDir m WHERE m.ccbCargueAct = :ccbCargueAct"),
     @NamedQuery(name = "M4ccbCvTrabaDir.findByStdIdSubGeoDiv", query = "SELECT m FROM M4ccbCvTrabaDir m WHERE m.stdIdSubGeoDiv = :stdIdSubGeoDiv"),
     @NamedQuery(name = "M4ccbCvTrabaDir.findByStdIdGeoPlace", query = "SELECT m FROM M4ccbCvTrabaDir m WHERE m.stdIdGeoPlace = :stdIdGeoPlace"),
     @NamedQuery(name = "M4ccbCvTrabaDir.findByIdApprole", query = "SELECT m FROM M4ccbCvTrabaDir m WHERE m.idApprole = :idApprole"),
@@ -99,6 +100,8 @@ public class M4ccbCvTrabaDir implements Serializable {
     private String stdIdSubGeoDiv;
     @Column(name = "STD_ID_GEO_PLACE")
     private String stdIdGeoPlace;
+    @Column(name = "CCB_CARGUE_ACT")
+    private String ccbCargueAct;
     @Column(name = "ID_APPROLE")
     private String idApprole;
     @Column(name = "ID_SECUSER")
@@ -332,6 +335,14 @@ public class M4ccbCvTrabaDir implements Serializable {
 
     public void setDtLastUpdate(Date dtLastUpdate) {
         this.dtLastUpdate = dtLastUpdate;
+    }
+    
+    public String getCcbCargueAct() {
+        return ccbCargueAct;
+    }
+
+    public void setCcbCargueAct(String ccbCargueAct) {
+        this.ccbCargueAct = ccbCargueAct;
     }
 
     @Override

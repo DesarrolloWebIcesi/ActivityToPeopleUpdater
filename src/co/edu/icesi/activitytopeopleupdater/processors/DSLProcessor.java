@@ -4,11 +4,15 @@
  */
 package co.edu.icesi.activitytopeopleupdater.processors;
 
-import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.M4ccbCvJurComJpaController;
+//import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.M4ccbCvJurComJpaController;
+//import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurCom;
+//import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurComPK;
+
+import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.M4ccbCvTrabaDirJpaController;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.exceptions.NonexistentEntityException;
 import co.edu.icesi.activitytopeopleupdater.peoplenet.dao.exceptions.PreexistingEntityException;
-import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurCom;
-import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvJurComPK;
+import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabaDir;
+import co.edu.icesi.activitytopeopleupdater.peoplenet.model.M4ccbCvTrabaDirPK;
 
 import co.edu.icesi.activitytopeopleupdater.peoplenet.model.Professor;
 import co.edu.icesi.activitytopeopleupdater.util.DateFormats;
@@ -60,14 +64,15 @@ public class DSLProcessor extends AbstractProcessor {
     /** Actually do the task of the processor */
     @Override
     protected synchronized void runProcesor() {
-        M4ccbCvJurComJpaController dslController = new M4ccbCvJurComJpaController(this.EMF);
+        //M4ccbCvJurComJpaController dslController = new M4ccbCvJurComJpaController(this.EMF);
+        M4ccbCvTrabaDirJpaController dslController = new M4ccbCvTrabaDirJpaController(this.EMF);
         for (int i = 0; i < this.entities.getLength(); i++) {
             //First verify if the activitie exist
             Element dslNode = (Element) this.entities.item(i);
             String dslId = dslNode.getAttribute("id") + ":" + this.professor.getUsername();
 
             try {
-                M4ccbCvJurCom dsl = dslController.findM4ccbCvJurComByCcbCargueAct(dslId);
+                M4ccbCvTrabaDir dsl = dslController.findM4ccbCvTrabaDirByCcbCargueAct(dslId);
                 // If exist, update the registry.
                 dsl = processDSL(dsl, dslNode);
                 try {
@@ -82,12 +87,12 @@ public class DSLProcessor extends AbstractProcessor {
 
             } catch (NoResultException ex) {
                 // Insert, if there are no regitries for the congrantId.
-                M4ccbCvJurComPK newDSLPk = new M4ccbCvJurComPK();
+                M4ccbCvTrabaDirPK newDSLPk = new M4ccbCvTrabaDirPK();
                 newDSLPk.setIdOrganization(ORGANIZATION_CODE);
                 newDSLPk.setStdIdHr(this.professor.getPeopleId());
-                short nextCcbOrJurCom = ((Integer) (dslController.getMaxCcbOrJurCom(this.professor.getPeopleId(), ORGANIZATION_CODE) + 1)).shortValue();
-                newDSLPk.setCcbOrJurCom(nextCcbOrJurCom);
-                M4ccbCvJurCom newDSL = new M4ccbCvJurCom(newDSLPk);
+                short nextCcbOrTrabaDir = ((Integer) (dslController.getMaxCcbOrTrabaDir(this.professor.getPeopleId(), ORGANIZATION_CODE) + 1)).shortValue();
+                newDSLPk.setCcbOrTrabDir(nextCcbOrTrabaDir);
+                M4ccbCvTrabaDir newDSL = new M4ccbCvTrabaDir(newDSLPk);
                 newDSL.setCcbCargueAct(dslId);
                 newDSL = processDSL(newDSL, dslNode);
                 try {
@@ -102,9 +107,9 @@ public class DSLProcessor extends AbstractProcessor {
 
             } catch (NonUniqueResultException ex2) {
                 if (dslId != null) {
-                    logger.error("There are several registries with the same CCB_CARGUE_ACT value" + dslId + "in the PeopleNet system table " + M4ccbCvJurCom.class.getName(), ex2);
+                    logger.error("There are several registries with the same CCB_CARGUE_ACT value" + dslId + "in the PeopleNet system table " + M4ccbCvTrabaDir.class.getName(), ex2);
                 } else {
-                    logger.error("There are several registries with the same CCB_CARGUE_ACT value in the PeopleNet system table " + M4ccbCvJurCom.class.getName(), ex2);
+                    logger.error("There are several registries with the same CCB_CARGUE_ACT value in the PeopleNet system table " + M4ccbCvTrabaDir.class.getName(), ex2);
                 }
             }
         }
@@ -113,12 +118,12 @@ public class DSLProcessor extends AbstractProcessor {
     /** 
      * Process an entity's information and saves it in PeopleNet database objects 
      * 
-     * @param dsl A M4ccbCvJurCom Object in which the information will be saved
+     * @param dsl A M4ccbCvTrabaDir Object in which the information will be saved
      * @param dslNode The entity node that will be processed
      * 
-     * @return A filled M4ccbCvJurCom Object
+     * @return A filled M4ccbCvTrabaDir Object
      */
-    private M4ccbCvJurCom processDSL(M4ccbCvJurCom dsl, Element dslNode) {
+    private M4ccbCvTrabaDir processDSL(M4ccbCvTrabaDir dsl, Element dslNode) {
         String dslComment = DocumentProcessor.getTagValue("COMMENT", dslNode);
         if (dslComment != null) {
             /**
@@ -126,28 +131,36 @@ public class DSLProcessor extends AbstractProcessor {
              * PeopleNet system replace after to 1000.
              */
             if (dslComment.length() > 254) {
-                dsl.setCcbComentarios(dslComment.substring(0, 253));
+                dsl.setCcbComentario(dslComment.substring(0, 253));
             } else {
-                dsl.setCcbComentarios(dslComment);
+                dsl.setCcbComentario(dslComment);
             }
         }
 
         String dtdEnd = DocumentProcessor.getTagValue("DTD_END", dslNode);
         String dtmEnd = DocumentProcessor.getTagValue("DTM_END", dslNode);
         String dtyEnd = DocumentProcessor.getTagValue("DTY_END", dslNode);
-        if (dtdEnd != null && !dtdEnd.equalsIgnoreCase("")
-                && dtmEnd != null && !dtmEnd.equalsIgnoreCase("")
-                && dtyEnd != null && !dtyEnd.equalsIgnoreCase("")) {
-            dsl.setCcbDtEnd(DateFormats.fullStringToDate(dtdEnd + "/" + dtmEnd + "/" + dtyEnd));
+        if (dtyEnd != null && !dtyEnd.equalsIgnoreCase("")) {
+            if (dtmEnd == null  || dtmEnd.equalsIgnoreCase("")){
+                dtmEnd = "01";
+            }
+            if(dtdEnd == null || dtdEnd.equalsIgnoreCase("")){
+                dtdEnd = "01";
+            }
+            dsl.setCcbFechaFin(DateFormats.fullStringToDate(dtdEnd + "/" + dtmEnd + "/" + dtyEnd));
         }
 
         String dtdStart = DocumentProcessor.getTagValue("DTD_START", dslNode);
         String dtmStart = DocumentProcessor.getTagValue("DTM_START", dslNode);
         String dtyStart = DocumentProcessor.getTagValue("DTY_START", dslNode);
-        if (dtdStart != null && !dtdStart.equalsIgnoreCase("")
-                && dtmStart != null && !dtmStart.equalsIgnoreCase("")
-                && dtyStart != null && !dtyStart.equalsIgnoreCase("")) {
-            dsl.setCcbDtStart(DateFormats.fullStringToDate(dtdStart + "/" + dtmStart + "/" + dtyStart));
+        if (dtyStart != null && !dtyStart.equalsIgnoreCase("")) {
+            if (dtmStart == null || dtmStart.equalsIgnoreCase("")){
+                dtmStart = "01";
+            }
+            if(dtdStart == null || dtdStart.equalsIgnoreCase("")){
+                dtdStart = "01";
+            }
+            dsl.setCcbFechaIni(DateFormats.fullStringToDate(dtdStart + "/" + dtmStart + "/" + dtdStart));
         }
 
         String dslCompstage = DocumentProcessor.getTagValue("COMPSTAGE", dslNode);
@@ -172,9 +185,9 @@ public class DSLProcessor extends AbstractProcessor {
                  * in PeopleNet system replace after to 1000.
                  */
                 if(dslOtherType.length()>70){
-                    dsl.setCcbOtrInvoluc(dslOtherType.substring(0,69));
+                    dsl.setCcbOtroTip(dslOtherType.substring(0,69));
                 }else{
-                    dsl.setCcbOtrInvoluc(dslOtherType);
+                    dsl.setCcbOtroTip(dslOtherType);
                 }
             }
         }
@@ -186,9 +199,9 @@ public class DSLProcessor extends AbstractProcessor {
              * replace after to 1000.             
              */
             if(students.length()>100){
-                dsl.setCcbNomEstud(students.substring(0, 99));
+                dsl.setCcbNomEst(students.substring(0, 99));
             }else{
-                dsl.setCcbNomEstud(students);
+                dsl.setCcbNomEst(students);
             }
         }
 
@@ -199,7 +212,7 @@ public class DSLProcessor extends AbstractProcessor {
 
         String dslTitle = DocumentProcessor.getTagValue("TITLE", dslNode);
         if (dslTitle != null) {
-            dsl.setCcbTituloProy(dslTitle);
+            dsl.setCcbNomTrab(dslTitle);
         }
 
         dsl.setDtLastUpdate(new Date());

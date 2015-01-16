@@ -59,7 +59,8 @@ public class DateFormats {
     }
     
     /** 
-     * Converts a string date in dd/MM/yyyy pattern by example "01/January/2012" to a Date Object.
+     * Converts a string date in dd/MMM/yyyy pattern by example "01/January/2012" to a Date Object.
+     * Converts a string date in dd/MM/yyyy pattern by example "01/01/2012" to a Date Object.
      * @return  A <code>Date</code> Object representing the date string given as parameter
      *          <code>Null</code> if the dateString param doesn´t fit the pattern.
      * @param dateString The string to parse.
@@ -74,7 +75,16 @@ public class DateFormats {
         }  
         catch (ParseException e)  
         {  
-            logger.error("Index: " + e.getErrorOffset(),e);  
+            logger.error("Error parsing date "+dateString +" with format dd/MMM/yyyy, it will try with format: dd/MM/yyyy");
+            SimpleDateFormat formatoAlterno = new SimpleDateFormat("dd/MM/yyyy");
+            String strFecha = dateString;
+            Date fechaDate;
+            try{
+            fechaDate = formatoAlterno.parse(strFecha);
+            return fechaDate;
+            }catch(ParseException ex){
+                logger.error("Error parsing date in second try " + ex.getErrorOffset(), ex);
+            }
         }  
         return null;
     }
